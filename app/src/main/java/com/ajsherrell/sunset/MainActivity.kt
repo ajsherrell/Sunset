@@ -1,5 +1,6 @@
 package com.ajsherrell.sunset
 
+import android.animation.ObjectAnimator
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -25,5 +26,11 @@ class MainActivity : AppCompatActivity() {
     private fun startAnimation() {
         val sunYStart = sun.top.toFloat()
         val sunYEnd = sky.height.toFloat()
+
+        val heightAnimator = ObjectAnimator
+            .ofFloat(sun, "y", sunYStart, sunYEnd)
+            .setDuration(3000)
+
+        heightAnimator.start()
     }
 }

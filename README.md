@@ -9,4 +9,4 @@
 
 ### Images
 
-<img src="images/dayTime.png" width="300">
+<img src="images/daytime.png" width="300">
