@@ -5,7 +5,9 @@
 ### Components
 
 - Custom drawables
+- Object Animation
 - Kotlin Android Extensions
+- TimeInterpolator
 
 ### Images
 
