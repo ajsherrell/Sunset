@@ -1,6 +1,6 @@
 # Sunset
 
-- An app that uses property animation to create a sunset over the water.
+- An app that uses property animation to create a sunset over the water. Touch once to start sunset, touch again to start sunrise.
 
 ### Components
 
