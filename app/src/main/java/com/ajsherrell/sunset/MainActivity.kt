@@ -17,6 +17,8 @@ class MainActivity : AppCompatActivity() {
 //    private lateinit var sunView: View
 //    private lateinit var skyView: View
 
+    private var isDown: Boolean = false
+
     private val blueSkyColor: Int by lazy {
         ContextCompat.getColor(this, R.color.blue_sky)
     }
@@ -38,7 +40,11 @@ class MainActivity : AppCompatActivity() {
 
         //when user presses anywhere in the scene view
         scene.setOnClickListener {
-            startAnimation()
+            if (isDown) {
+                startUpAnimation()
+            } else {
+                startAnimation()
+            }
         }
     }
 
@@ -66,5 +72,35 @@ class MainActivity : AppCompatActivity() {
             .with(sunsetSkyAnimator)
             .before(nightSkyAnimator)
         animatorSet.start()
+
+        isDown = true
+    }
+
+    private fun startUpAnimation() {
+        val sunYStart = sky.height.toFloat()
+        val sunYEnd = sun.top.toFloat()
+
+        val heightAnimator = ObjectAnimator
+            .ofFloat(sun, "y", sunYStart, sunYEnd)
+            .setDuration(3000)
+        heightAnimator.interpolator = AccelerateInterpolator()
+
+        val sunsetSkyAnimator = ObjectAnimator
+            .ofInt(sky, "backgroundColor", sunsetSkyColor, blueSkyColor)
+            .setDuration(750)
+        sunsetSkyAnimator.setEvaluator(ArgbEvaluator())
+
+        val nightSkyAnimator = ObjectAnimator
+            .ofInt(sky, "backgroundColor", nightSkyColor, sunsetSkyColor)
+            .setDuration(3000)
+        nightSkyAnimator.setEvaluator(ArgbEvaluator())
+
+        val animatorSet = AnimatorSet()
+        animatorSet.play(heightAnimator)
+            .with(nightSkyAnimator)
+            .before(sunsetSkyAnimator)
+        animatorSet.start()
+
+        isDown = false
     }
 }
