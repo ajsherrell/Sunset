@@ -5,5 +5,8 @@
 ### Components
 
 - Custom drawables
+- Kotlin Android Extensions
 
 ### Images
+
+<img src="images/dayTime.png" width="300">
