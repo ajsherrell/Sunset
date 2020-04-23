@@ -1,5 +1,6 @@
 package com.ajsherrell.sunset
 
+import android.animation.AnimatorSet
 import android.animation.ArgbEvaluator
 import android.animation.ObjectAnimator
 import androidx.appcompat.app.AppCompatActivity
@@ -55,7 +56,15 @@ class MainActivity : AppCompatActivity() {
             .setDuration(3000)
         sunsetSkyAnimator.setEvaluator(ArgbEvaluator())
 
-        heightAnimator.start()
-        sunsetSkyAnimator.start()
+        val nightSkyAnimator = ObjectAnimator
+            .ofInt(sky, "backgroundColor", sunsetSkyColor, nightSkyColor)
+            .setDuration(1500)
+        nightSkyAnimator.setEvaluator(ArgbEvaluator())
+
+        val animatorSet = AnimatorSet()
+        animatorSet.play(heightAnimator)
+            .with(sunsetSkyAnimator)
+            .before(nightSkyAnimator)
+        animatorSet.start()
     }
 }
