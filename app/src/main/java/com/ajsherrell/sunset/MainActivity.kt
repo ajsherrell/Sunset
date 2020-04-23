@@ -49,6 +49,11 @@ class MainActivity : AppCompatActivity() {
             .setDuration(3000)
         heightAnimator.interpolator = AccelerateInterpolator()
 
+        val sunsetSkyAnimator = ObjectAnimator
+            .ofInt(sky, "backgroundColor", blueSkyColor, sunsetSkyColor)
+            .setDuration(3000)
+
         heightAnimator.start()
+        sunsetSkyAnimator.start()
     }
 }
